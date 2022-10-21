@@ -1,0 +1,52 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: music-employee-service
+        uri: lb://music-employee-service
+        predicates:
+        - Path=/employee/**
+        filters:
+        - StripPrefix=1
+      - id: music-review-service
+        uri: lb://music-review-service
+        predicates:
+        - Path=/review/**
+        filters:
+        - StripPrefix=1
+      - id: music-search-service
+        uri: lb://music-search-service
+        predicates:
+        - Path=/search/**
+        filters:
+        - StripPrefix=1
+  
+  
+    loadbalancer:
+      ribbon:
+        enabled: true
+        
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - prometheus
+        - info
+        - health
+
+
+      
+     
+      
+      
+      
+    
+ 
+      
+      
