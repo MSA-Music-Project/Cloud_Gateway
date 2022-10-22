@@ -2,6 +2,9 @@ server:
   port: 9000
 
 spring:
+  cofnfig:
+    import:
+    - optional=configserver:http://cloud-config:8888
   application:
     name: cloud-gateway
   cloud:
